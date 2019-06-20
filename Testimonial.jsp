@@ -1,418 +1,361 @@
-<%-- 
-    Document   : txt
-    Created on : Aug 2, 2018, 12:22:15 PM
-    Author     : APTA
---%>
-
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="Connection.Connect"%>
 <%@page import="java.sql.Connection"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.Connection"%>
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Gentellela Alela! | </title>
-
-  <!-- Bootstrap core CSS -->
-
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
-  <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/animate.min.css" rel="stylesheet">
-
-  <!-- Custom styling plus plugins -->
-  <link href="css/custom.css" rel="stylesheet">
-  <link href="css/icheck/flat/green.css" rel="stylesheet">
-  <!-- editor -->
-  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
-  <link href="css/editor/external/google-code-prettify/prettify.css" rel="stylesheet">
-  <link href="css/editor/index.css" rel="stylesheet">
-  <!-- select2 -->
-  <link href="css/select/select2.min.css" rel="stylesheet">
-  <!-- switchery -->
-  <link rel="stylesheet" href="css/switchery/switchery.min.css" />
-
-  <script src="js/jquery.min.js"></script>
-
-  <!--[if lt IE 9]>
-        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
-        <![endif]-->
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-  
-  <style>
-      .panel-body h4{color:gray;}
-  </style>
-
+<title>Women's Fashion a Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Single :: w3layouts</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Women's Fashion Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/fasthover.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+<link href="css/rating.css" rel="stylesheet" type="text/css"/>
+<link href="css/rating.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<!-- js -->
+<script src="js/jquery.min.js"></script>
+<!-- //js -->
+<!-- cart -->
+<script src="js/simpleCart.min.js"></script>
+<!-- cart -->
+<!-- for bootstrap working -->
+<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+<!-- //for bootstrap working -->
+<link href='//fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- start-smooth-scrolling -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- //end-smooth-scrolling -->
 </head>
+	
+<body>
+<!-- header -->
+<jsp:include page="header.jsp"></jsp:include>
+<!-- //header -->
+<!-- banner -->
+	<div class="banner10" id="home1">
+		<div class="container">
+			<h2>Review</h2>
+		</div>
+	</div>
+<!-- //banner -->
+
+<!-- breadcrumbs -->
+	<div class="breadcrumb_dress">
+		<div class="container">
+			<ul>
+				<li><a href="home.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
+				<li>Review Page</li>
+			</ul>
+		</div>
+	</div>
+<!-- //breadcrumbs -->
+
+<!-- review -->
+<div class="single">
+    <div class="container">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+          <form action="../Review" method="post">
+                                <%
+                                    String userEmail=session.getAttribute("email").toString();
+                                    Connection cn=new Connect().getConnection();
+                                    PreparedStatement ps=cn.prepareStatement("select * from user where email=?");
+                                    ps.setString(1, userEmail);
+                                    ResultSet rs=ps.executeQuery();
+                                    if(rs.next())
+                                    {
+                                %>                    
+						<div class="form-group ">
+							<label for="name" class="sr-only">Name</label>
+							<input id="name" readOnly="true" name="name" value="<%=rs.getString("fname")%>" class="form-control" placeholder="Name" type="text"required="required">
+						</div>
+						<div class="form-group ">
+							<label for="email" class="sr-only">Email</label>
+                                                        <input id="email" name="email" readOnly="true" class="form-control" value="<%=rs.getString("email")%>" placeholder="Email"  type="email"required="required">
+						</div>
+                                                
+						<div class="form-group" id="rating-ability-wrapper">
+          <label class="control-label" for="rating">
+	    <span class="field-label-header">How would you like to rate Us?*</span><br>
+	    <span class="field-label-info"></span>
+            
+            </lable>
+  <div class="stars" >
+
+   
+    <input class="star star-1" id="star-1" type="radio" value="5" name="selected_rating"/>
+    <label class="star star-1" for="star-1"></label>
+
+    <input class="star star-2" id="star-2" type="radio" value="4" name="selected_rating"/>
+
+    <label class="star star-2" for="star-2"></label>
+
+    <input class="star star-3" id="star-3" type="radio" value="3" name="selected_rating"/>
+
+    <label class="star star-3" for="star-3"></label>
+
+    <input class="star star-4" id="star-4" type="radio" value="2" name="selected_rating"/>
+
+    <label class="star star-4" for="star-4"></label>
+
+    <input class="star star-5" id="star-5" type="radio" value="1" name="selected_rating"/>
+
+    <label class="star star-5" for="star-5"></label>
 
 
-<body class="nav-md">
-
- <div class="container body">
-		<div class="main_container">
-			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view">
-                                      <jsp:include page="include/header.jsp"></jsp:include>
-
-					
-					<!-- sidebar menu -->
-					 <jsp:include page="include/sidebar.jsp"></jsp:include>
-
-					<!-- /sidebar menu -->
-
-					<!-- /menu footer buttons -->
-				
-					<!-- /menu footer buttons -->
-				</div>
-			</div>
-
-			<!-- top navigation -->
-					 <jsp:include page="include/nav.jsp"></jsp:include>
-	     <!-- /top navigation -->
-
-      <!-- page content -->
-      <div class="right_col" role="main">
-        <div class="">
-
-          <div class="page-title">
-            <div class="title_left">
-              <h3>Testimonial</h3>
-            </div>
-          
-          </div>
-          <div class="clearfix"></div>
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              
+</div>
 
 
+	    
+	   
+	</div>
+						
+                             <div class="form-group">
+                                                   <label for="email" class="sr-only">Review</label>
+                                                    <div>
+                                                        <textarea class="form-control" rows="10" name="review" placeholder="Enter the Review Here"></textarea>
+                                                    </div>  
+                                                        </div>
 
-
-          <div class="col-md-12 col-sm-12 col-xs-12">
-         
-            <div class="x_panel">
-              <div class="x_title">
-                <h2>Users <small>Testimonial</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                  </li>
-                  
-                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-              </div>
-              <div class="x_content">
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Rating</th>
-                        <th>Review</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                  <%
-                      Connection cn=new Connect().getConnection();
-                      PreparedStatement ps=cn.prepareStatement("select * from testimonial");
-                      ResultSet rs=ps.executeQuery();
-                      while(rs.next())
-                      {
-                  %>
-                  <tbody
-                  <tr>
-                    
-                        <input type="hidden" name="testimonialId" value="<%=rs.getString("testimonialId")%>">
-                       
-                           <td>
-                            <div class="col-md-8">
-                                
-                                <p><strong><%=rs.getString("name")%></strong></p>
-                            </div>
-                           </td>
-                           <td>
-                            <div class="col-md-8">
-                               
-                                <%=rs.getString("rating")%>
-                            </div>
-                           </td>
-                           <td>
-                            <div class="col-md-12">
-                             
-                                <%=rs.getString("review")%>
-                            </div>
-                           </td>
-                           <td>
-                            <div class="col-md-12">
-                             <button type="button" style="margin-left: 10px;" class="btn btn-success btn-xs">Active</button>
-                             <a href="../DeleteTestimonial?testimonialId=<%=rs.getString("testimonialId")%>" onclick="if(confirm('Sure Want?')){return true;} else{return false;};"><button type="button" style="margin-left: 10px;" class="btn btn-danger btn-xs">Delete</button></a>
-                            </div>
-                           </td>
-                    </tr>
-                  </tbody>
-                    <%
-                        }
-                    %>
-                  </table>
-              </div>
-            </div>
-          
-
+							
+						
+						<div class="form-group ">
+							<input class="btn btn-warning justify-center" value="SUBMIT" type="submit">
+						</div>
+                                 <%
+                                    }
+                                 %>
+            </form>
         </div>
-        <div class="clearfix"></div>
+    </div>
+</div>
 
-          </div>
-                <br />
-
-                <div class="ln_solid"></div>
-
-              
-              </div>
-            </div>
-          </div>
-
-
-        <!-- /page content -->
-
-        <!-- footer content -->
-            </div>
-							<div class="clearfix"></div>
+	
+	<div class="w3l_related_products">
+		<div class="container">
+			<h3>Related Products</h3>
+			<ul id="flexiselDemo2">			
+				<li>
+					<div class="w3l_related_products_grid">
+						<div class="agile_ecommerce_tab_left dresses_grid">
+							<div class="hs-wrapper hs-wrapper3">
+								<img src="images/ss1.jpg" alt=" " class="img-responsive">
+								<img src="images/ss2.jpg" alt=" " class="img-responsive">
+								<img src="images/ss3.jpg" alt=" " class="img-responsive">
+								<img src="images/ss4.jpg" alt=" " class="img-responsive">
+								<img src="images/ss5.jpg" alt=" " class="img-responsive">
+								<img src="images/ss6.jpg" alt=" " class="img-responsive">
+								<img src="images/ss7.jpg" alt=" " class="img-responsive">
+								<img src="images/ss8.jpg" alt=" " class="img-responsive">
+								<div class="w3_hs_bottom">
+									<div class="flex_ecommerce">
+										<a href="#" data-toggle="modal" data-target="#myModal6"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+									</div>
+								</div>
+							</div>
+							<h5><a href="single.html">Pink Flared Skirt</a></h5>
+							<div class="simpleCart_shelfItem">
+								<p class="flexisel_ecommerce_cart"><span>$312</span> <i class="item_price">$212</i></p>
+								<p><a class="item_add" href="#">Add to cart</a></p>
+							</div>
 						</div>
 					</div>
-
-				</div>
-				<br />
-
-				<!-- footer content -->
-                                   <jsp:include page="include/footer.jsp"></jsp:include>
-
-				
-				<!-- /footer content -->
-			</div>
-			<!-- /page content -->
-
+				</li>
+				<li>
+					<div class="w3l_related_products_grid">
+						<div class="agile_ecommerce_tab_left dresses_grid">
+							<div class="hs-wrapper hs-wrapper3">
+								<img src="images/ss2.jpg" alt=" " class="img-responsive">
+								<img src="images/ss3.jpg" alt=" " class="img-responsive">
+								<img src="images/ss4.jpg" alt=" " class="img-responsive">
+								<img src="images/ss5.jpg" alt=" " class="img-responsive">
+								<img src="images/ss6.jpg" alt=" " class="img-responsive">
+								<img src="images/ss9.jpg" alt=" " class="img-responsive">
+								<img src="images/ss7.jpg" alt=" " class="img-responsive">
+								<img src="images/ss8.jpg" alt=" " class="img-responsive">
+								<div class="w3_hs_bottom">
+									<div class="flex_ecommerce">
+										<a href="#" data-toggle="modal" data-target="#myModal6"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+									</div>
+								</div>
+							</div>
+							<h5><a href="single.html">Red Pencil Skirt</a></h5>
+							<div class="simpleCart_shelfItem">
+								<p class="flexisel_ecommerce_cart"><span>$432</span> <i class="item_price">$323</i></p>
+								<p><a class="item_add" href="#">Add to cart</a></p>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="w3l_related_products_grid">
+						<div class="agile_ecommerce_tab_left dresses_grid">
+							<div class="hs-wrapper hs-wrapper3">
+								<img src="images/ss3.jpg" alt=" " class="img-responsive">
+								<img src="images/ss4.jpg" alt=" " class="img-responsive">
+								<img src="images/ss5.jpg" alt=" " class="img-responsive">
+								<img src="images/ss6.jpg" alt=" " class="img-responsive">
+								<img src="images/ss7.jpg" alt=" " class="img-responsive">
+								<img src="images/ss8.jpg" alt=" " class="img-responsive">
+								<img src="images/ss9.jpg" alt=" " class="img-responsive">
+								<img src="images/ss1.jpg" alt=" " class="img-responsive">
+								<div class="w3_hs_bottom">
+									<div class="flex_ecommerce">
+										<a href="#" data-toggle="modal" data-target="#myModal6"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+									</div>
+								</div>
+							</div>
+							<h5><a href="single.html">Yellow Cotton Skirt</a></h5>
+							<div class="simpleCart_shelfItem">
+								<p class="flexisel_ecommerce_cart"><span>$323</span> <i class="item_price">$310</i></p>
+								<p><a class="item_add" href="#">Add to cart</a></p>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="w3l_related_products_grid">
+						<div class="agile_ecommerce_tab_left dresses_grid">
+							<div class="hs-wrapper hs-wrapper3">
+								<img src="images/ss4.jpg" alt=" " class="img-responsive">
+								<img src="images/ss5.jpg" alt=" " class="img-responsive">
+								<img src="images/ss6.jpg" alt=" " class="img-responsive">
+								<img src="images/ss7.jpg" alt=" " class="img-responsive">
+								<img src="images/ss8.jpg" alt=" " class="img-responsive">
+								<img src="images/ss9.jpg" alt=" " class="img-responsive">
+								<img src="images/ss1.jpg" alt=" " class="img-responsive">
+								<img src="images/ss2.jpg" alt=" " class="img-responsive">
+								<div class="w3_hs_bottom">
+									<div class="flex_ecommerce">
+										<a href="#" data-toggle="modal" data-target="#myModal6"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+									</div>
+								</div>
+							</div>
+							<h5><a href="single.html">Black Short</a></h5>
+							<div class="simpleCart_shelfItem">
+								<p class="flexisel_ecommerce_cart"><span>$256</span> <i class="item_price">$200</i></p>
+								<p><a class="item_add" href="#">Add to cart</a></p>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+				<script type="text/javascript">
+					$(window).load(function() {
+						$("#flexiselDemo2").flexisel({
+							visibleItems:4,
+							animationSpeed: 1000,
+							autoPlay: true,
+							autoPlaySpeed: 3000,    		
+							pauseOnHover: true,
+							enableResponsiveBreakpoints: true,
+							responsiveBreakpoints: { 
+								portrait: { 
+									changePoint:480,
+									visibleItems: 1
+								}, 
+								landscape: { 
+									changePoint:640,
+									visibleItems:2
+								},
+								tablet: { 
+									changePoint:768,
+									visibleItems: 3
+								}
+							}
+						});
+						
+					});
+				</script>
+				<script type="text/javascript" src="js/jquery.flexisel.js"></script>
 		</div>
-
 	</div>
-
-	<div id="custom_notifications" class="custom-notifications dsp_none">
-		<ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-		</ul>
-		<div class="clearfix"></div>
-		<div id="notif-group" class="tabbed_notifications"></div>
+	<div class="modal video-modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModal6">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+				</div>
+				<section>
+					<div class="modal-body">
+						<div class="col-md-5 modal_body_left">
+							<img src="images/39.jpg" alt=" " class="img-responsive" />
+						</div>
+						<div class="col-md-7 modal_body_right">
+							<h4>a good look women's Long Skirt</h4>
+							<p>Ut enim ad minim veniam, quis nostrud 
+								exercitation ullamco laboris nisi ut aliquip ex ea 
+								commodo consequat.Duis aute irure dolor in 
+								reprehenderit in voluptate velit esse cillum dolore 
+								eu fugiat nulla pariatur. Excepteur sint occaecat 
+								cupidatat non proident, sunt in culpa qui officia 
+								deserunt mollit anim id est laborum.</p>
+							<div class="rating">
+								<div class="rating-left">
+									<img src="images/star-.png" alt=" " class="img-responsive" />
+								</div>
+								<div class="rating-left">
+									<img src="images/star-.png" alt=" " class="img-responsive" />
+								</div>
+								<div class="rating-left">
+									<img src="images/star-.png" alt=" " class="img-responsive" />
+								</div>
+								<div class="rating-left">
+									<img src="images/star.png" alt=" " class="img-responsive" />
+								</div>
+								<div class="rating-left">
+									<img src="images/star.png" alt=" " class="img-responsive" />
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="modal_body_right_cart simpleCart_shelfItem">
+								<p><span>$320</span> <i class="item_price">$250</i></p>
+								<p><a class="item_add" href="#">Add to cart</a></p>
+							</div>
+							<h5>Color</h5>
+							<div class="color-quality">
+								<ul>
+									<li><a href="#"><span></span>Red</a></li>
+									<li><a href="#" class="brown"><span></span>Yellow</a></li>
+									<li><a href="#" class="purple"><span></span>Purple</a></li>
+									<li><a href="#" class="gray"><span></span>Violet</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</section>
+			</div>
+		</div>
 	</div>
+<!-- //single -->
 
-  <script src="js/bootstrap.min.js"></script>
-
-  <!-- bootstrap progress js -->
-  <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-  <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
-  <!-- icheck -->
-  <script src="js/icheck/icheck.min.js"></script>
-  <!-- tags -->
-  <script src="js/tags/jquery.tagsinput.min.js"></script>
-  <!-- switchery -->
-  <script src="js/switchery/switchery.min.js"></script>
-  <!-- daterangepicker -->
-  <script type="text/javascript" src="js/moment/moment.min.js"></script>
-  <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
-  <!-- richtext editor -->
-  <script src="js/editor/bootstrap-wysiwyg.js"></script>
-  <script src="js/editor/external/jquery.hotkeys.js"></script>
-  <script src="js/editor/external/google-code-prettify/prettify.js"></script>
-  <!-- select2 -->
-  <script src="js/select/select2.full.js"></script>
-  <!-- form validation -->
-  <script type="text/javascript" src="js/parsley/parsley.min.js"></script>
-  <!-- textarea resize -->
-  <script src="js/textarea/autosize.min.js"></script>
-  <script>
-    autosize($('.resizable_textarea'));
-  </script>
-  <!-- Autocomplete -->
-  <script type="text/javascript" src="js/autocomplete/countries.js"></script>
-  <script src="js/autocomplete/jquery.autocomplete.js"></script>
-  <!-- pace -->
-  <script src="js/pace/pace.min.js"></script>
-  <script type="text/javascript">
-    $(function() {
-      'use strict';
-      var countriesArray = $.map(countries, function(value, key) {
-        return {
-          value: value,
-          data: key
-        };
-      });
-      // Initialize autocomplete with custom appendTo:
-      $('#autocomplete-custom-append').autocomplete({
-        lookup: countriesArray,
-        appendTo: '#autocomplete-container'
-      });
-    });
-  </script>
-  <script src="js/custom.js"></script>
-
-
-  <!-- select2 -->
-  <script>
-    $(document).ready(function() {
-      $(".select2_single").select2({
-        placeholder: "Select a state",
-        allowClear: true
-      });
-      $(".select2_group").select2({});
-      $(".select2_multiple").select2({
-        maximumSelectionLength: 4,
-        placeholder: "With Max Selection limit 4",
-        allowClear: true
-      });
-    });
-  </script>
-  <!-- /select2 -->
-  <!-- input tags -->
-  <script>
-    function onAddTag(tag) {
-      alert("Added a tag: " + tag);
-    }
-
-    function onRemoveTag(tag) {
-      alert("Removed a tag: " + tag);
-    }
-
-    function onChangeTag(input, tag) {
-      alert("Changed a tag: " + tag);
-    }
-
-    $(function() {
-      $('#tags_1').tagsInput({
-        width: 'auto'
-      });
-    });
-  </script>
-  <!-- /input tags -->
-  <!-- form validation -->
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $.listen('parsley:field:validate', function() {
-        validateFront();
-      });
-      $('#demo-form .btn').on('click', function() {
-        $('#demo-form').parsley().validate();
-        validateFront();
-      });
-      var validateFront = function() {
-        if (true === $('#demo-form').parsley().isValid()) {
-          $('.bs-callout-info').removeClass('hidden');
-          $('.bs-callout-warning').addClass('hidden');
-        } else {
-          $('.bs-callout-info').addClass('hidden');
-          $('.bs-callout-warning').removeClass('hidden');
-        }
-      };
-    });
-
-    $(document).ready(function() {
-      $.listen('parsley:field:validate', function() {
-        validateFront();
-      });
-      $('#demo-form2 .btn').on('click', function() {
-        $('#demo-form2').parsley().validate();
-        validateFront();
-      });
-      var validateFront = function() {
-        if (true === $('#demo-form2').parsley().isValid()) {
-          $('.bs-callout-info').removeClass('hidden');
-          $('.bs-callout-warning').addClass('hidden');
-        } else {
-          $('.bs-callout-info').addClass('hidden');
-          $('.bs-callout-warning').removeClass('hidden');
-        }
-      };
-    });
-    try {
-      hljs.initHighlightingOnLoad();
-    } catch (err) {}
-  </script>
-  <!-- /form validation -->
-  <!-- editor -->
-  <script>
-    $(document).ready(function() {
-      $('.xcxc').click(function() {
-        $('#descr').val($('#editor').jsp());
-      });
-    });
-
-    $(function() {
-      function initToolbarBootstrapBindings() {
-        var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
-            'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
-            'Times New Roman', 'Verdana'
-          ],
-          fontTarget = $('[title=Font]').siblings('.dropdown-menu');
-        $.each(fonts, function(idx, fontName) {
-          fontTarget.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">' + fontName + '</a></li>'));
-        });
-        $('a[title]').tooltip({
-          container: 'body'
-        });
-        $('.dropdown-menu input').click(function() {
-            return false;
-          })
-          .change(function() {
-            $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
-          })
-          .keydown('esc', function() {
-            this.value = '';
-            $(this).change();
-          });
-
-        $('[data-role=magic-overlay]').each(function() {
-          var overlay = $(this),
-            target = $(overlay.data('target'));
-          overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-        });
-        if ("onwebkitspeechchange" in document.createElement("input")) {
-          var editorOffset = $('#editor').offset();
-          $('#voiceBtn').css('position', 'absolute').offset({
-            top: editorOffset.top,
-            left: editorOffset.left + $('#editor').innerWidth() - 35
-          });
-        } else {
-          $('#voiceBtn').hide();
-        }
-      };
-
-      function showErrorAlert(reason, detail) {
-        var msg = '';
-        if (reason === 'unsupported-file-type') {
-          msg = "Unsupported format " + detail;
-        } else {
-          console.log("error uploading file", reason, detail);
-        }
-        $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
-          '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
-      };
-      initToolbarBootstrapBindings();
-      $('#editor').wysiwyg({
-        fileUploadError: showErrorAlert
-      });
-      window.prettyPrint && prettyPrint();
-    });
-  </script>
-  <!-- /editor -->
+<!-- footer -->
+<jsp:include page="footer.jsp"></jsp:include>
+<!-- //footer -->
 </body>
-
 </html>
